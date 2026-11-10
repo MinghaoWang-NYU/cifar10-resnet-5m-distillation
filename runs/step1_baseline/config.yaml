@@ -1,0 +1,41 @@
+name: baseline
+seed: 42
+data:
+  cache_dir: data/cache
+  val_size: 5000
+  full_train: false
+  num_workers: 6
+model:
+  widths:
+  - 64
+  - 128
+  - 256
+  blocks:
+  - 4
+  - 4
+  - 3
+  stem_channels: 64
+  dropout: 0.0
+  num_classes: 10
+  param_limit: 5000000
+aug:
+  policy: none
+  cutout: 0
+  cutmix_prob: 0.0
+  cutmix_alpha: 1.0
+train:
+  epochs: 200
+  batch_size: 128
+  optimizer: sgd
+  lr: 0.1
+  momentum: 0.9
+  nesterov: true
+  weight_decay: 0.0005
+  warmup_epochs: 5
+  label_smoothing: 0.0
+  ema_decay: 0.0
+  amp: true
+kd:
+  teacher_ckpt: null
+  alpha: 0.9
+  temperature: 4.0

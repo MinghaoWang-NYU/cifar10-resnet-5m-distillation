@@ -1,0 +1,33 @@
+{
+  "name": "teacher_cutmix_600ep",
+  "seed": 42,
+  "train_seed": 1,
+  "val_size": 5000,
+  "full_train": false,
+  "model": {
+    "widths": [
+      160,
+      320,
+      640
+    ],
+    "blocks": [
+      4,
+      4,
+      4
+    ],
+    "stem_channels": 16
+  },
+  "param_limit": null,
+  "epochs": 600,
+  "batch_size": 128,
+  "lr": 0.1,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "warmup_epochs": 5,
+  "trivialaugment": true,
+  "cutout": 16,
+  "label_smoothing": 0.1,
+  "ema_decay": 0.999,
+  "cutmix_prob": 0.5,
+  "cutmix_alpha": 1.0
+}

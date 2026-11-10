@@ -1,0 +1,7 @@
+{
+  "device": "NVIDIA A100-SXM4-40GB",
+  "torch": "2.6.0+cu124",
+  "n_params": 4696394,
+  "start_epoch": 0,
+  "epochs": 300
+}

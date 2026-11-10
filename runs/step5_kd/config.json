@@ -1,0 +1,33 @@
+{
+  "name": "kd",
+  "seed": 42,
+  "val_size": 5000,
+  "full_train": false,
+  "model": {
+    "widths": [
+      64,
+      128,
+      256
+    ],
+    "blocks": [
+      4,
+      4,
+      3
+    ],
+    "stem_channels": 64
+  },
+  "param_limit": 5000000,
+  "epochs": 300,
+  "batch_size": 128,
+  "lr": 0.1,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "warmup_epochs": 5,
+  "trivialaugment": true,
+  "cutout": 16,
+  "label_smoothing": 0.1,
+  "ema_decay": 0.999,
+  "teacher_ckpt": "runs/teacher_wrn28_10/last.pt",
+  "kd_alpha": 0.9,
+  "kd_temperature": 4.0
+}

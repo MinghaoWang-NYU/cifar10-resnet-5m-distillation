@@ -1,0 +1,9 @@
+{
+  "checkpoint": "runs/main_300ep/last.pt",
+  "weights": "ema",
+  "epoch": 300,
+  "n_params": 4696394,
+  "val_acc": 0.9706000089645386,
+  "val_acc_flip_tta": 0.9718000292778015,
+  "submission": "runs/main_300ep/submission.csv"
+}

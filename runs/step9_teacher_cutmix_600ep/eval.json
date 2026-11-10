@@ -1,0 +1,8 @@
+{
+  "checkpoint": "runs/teacher_cutmix_600ep/last.pt",
+  "weights": "ema",
+  "epoch": 600,
+  "n_params": 36479194,
+  "val_acc": 0.979200005531311,
+  "val_acc_flip_tta": 0.9824000000953674
+}

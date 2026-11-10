@@ -1,0 +1,8 @@
+{
+  "checkpoint": "runs/teacher_wrn28_10/last.pt",
+  "weights": "ema",
+  "epoch": 200,
+  "n_params": 36479194,
+  "val_acc": 0.9761999845504761,
+  "val_acc_flip_tta": 0.979200005531311
+}

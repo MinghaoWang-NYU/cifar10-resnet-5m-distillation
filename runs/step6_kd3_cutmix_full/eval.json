@@ -1,0 +1,7 @@
+{
+  "checkpoint": "runs/kd3_cutmix_full/last.pt",
+  "weights": "ema",
+  "epoch": 1000,
+  "n_params": 4696394,
+  "submission": "runs/kd3_cutmix_full/submission.csv"
+}

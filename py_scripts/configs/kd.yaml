@@ -1,0 +1,43 @@
+# Student (same 4.70M-param architecture as main.yaml) distilled from the WRN-28-10 teacher, 300 epochs.
+# The teacher sees exactly the same augmented batch as the student.
+# loss = (1 - alpha) * CE(student, smoothed labels) + alpha * T^2 * KL(teacher_T || student_T)
+name: kd
+seed: 42
+
+data:
+  cache_dir: data/cache       # written by prepare_data.py
+  val_size: 5000              # stratified hold-out (500 / class) from the 50k training images
+  full_train: false           # true (or --full-train) = train on all 50k, no validation
+  num_workers: 6
+
+model:
+  widths: [64, 128, 256]      # channels of the 3 stages (32x32, 16x16, 8x8)
+  blocks: [4, 4, 3]           # residual blocks per stage
+  stem_channels: 64
+  dropout: 0.0                # dropout between the two convs of each block (WRN style)
+  num_classes: 10
+  param_limit: 5000000        # training aborts if the model exceeds this
+
+aug:
+  policy: trivialaugment      # none | autoaugment | trivialaugment  (after random crop + flip)
+  cutout: 16                  # Cutout square size in pixels, 0 = off
+  cutmix_prob: 0.0            # probability of applying CutMix to a batch
+  cutmix_alpha: 1.0
+
+train:
+  epochs: 300
+  batch_size: 128
+  optimizer: sgd              # sgd | adamw
+  lr: 0.1                     # peak LR (scale linearly with batch size)
+  momentum: 0.9
+  nesterov: true
+  weight_decay: 5.0e-4        # conv / linear weights only, not BN or biases
+  warmup_epochs: 5            # linear warm-up, then cosine decay to 0
+  label_smoothing: 0.1
+  ema_decay: 0.999            # 0 = no EMA
+  amp: true                   # mixed precision on CUDA
+
+kd:
+  teacher_ckpt: runs/teacher_wrn28_10/last.pt  # path to a teacher checkpoint enables knowledge distillation
+  alpha: 0.9                  # weight of the distillation term
+  temperature: 4.0
